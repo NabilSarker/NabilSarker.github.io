@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sono:wght@300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <title>Nabil Sarker</title>
+  <style>
+    body {
+      text-align: center;
+      background: url("https://wallpapercave.com/wp/wp6344300.jpg");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      font-family: helvetica;
+    }
+    
+    h1 {
+      font-family: 'Sono', sans-serif;
+      font-size: 40px;
+      padding: 5px;
+      color: rgba(50, 82, 87)
+  }
+
+
+    img {
+      border-radius: 400px;
+      
+    }
+    p {
+      font-family: 'Lobster', cursive;
+      margin: 20px;
+      font-size: 20px;
+      color: rgba(16,75,97)
+    }
+    input {
+      border: 0;
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 10px;
+      background: rgba(255,255,255,255);
+      
+    }
+    input[type="submit"] {
+      background: rgba(50, 82, 87,0.7);
+      color: grey;
+      border: 0;
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://media.discordapp.net/attachments/1039954169613795469/1040311564969984031/image0.jpg">
+  <h1>Nabil Sarkar</h1>
+  <p>Hey! I'm Nabil Sarkar!</p>
+  <input id="Name" placeholder="Your name">
+  <input type="email" id="Email" placeholder="Your email">
+  <input id="submit" type="submit">
+  
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+		import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDdn3vPChYcP-kQ3LjuFXrT2cAz4U7Fw4M",
+      authDomain: "nabil-dash-project-1.firebaseapp.com",
+      projectId: "nabil-dash-project-1",
+      storageBucket: "nabil-dash-project-1.appspot.com",
+      messagingSenderId: "929358150285",
+      appId: "1:929358150285:web:5bed48368d26b4c570c0c4"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+	const db = getDatabase(app);
+	
+const Name = document.querySelector("#Name") 
+const Email = document.querySelector("#Email")
+document.querySelector('#submit').addEventListener('click', Submit)
+	
+	function Submit() {
+	  const timestamp = buildTimestamp()
+	  
+	  set(ref(db, timestamp), {
+		  Name: Name.value,
+	      email: Email.value,
+	  });
+
+	  Name.value = ""
+	  Email.value = ""
+	}
+	
+	function buildTimestamp() {
+	  const now = new Date();
+	  let timestamp = now.getFullYear().toString() + "/";
+	  //const month = now.toLocaleString('default', { month: 'long' });
+
+	  let month = now.getMonth()+1   //add 1 because Javascript uses 0 for January
+	  month = month.toString()
+	  month = addLeadingZero(month)
+	  timestamp += month + "/"; 
+
+	  let date = now.getDate().toString()
+	  date = addLeadingZero(date)
+	  timestamp += date + "/";
+
+	  let hours = now.getHours().toString()
+	  hours = addLeadingZero(hours)
+	  timestamp += hours + ":";
+
+	  let minutes = now.getMinutes().toString()
+	  minutes = addLeadingZero(minutes)
+	  timestamp += minutes + ":";
+
+	  let seconds = now.getSeconds().toString()
+	  seconds = addLeadingZero(seconds)
+	  timestamp += seconds;
+  
+	  return timestamp
+	}
+	
+	function addLeadingZero(units) {
+		if (units.length < 2) {
+			units = "0" + units
+		}
+		return units
+	}
+	
+	
+  </script>
+
+</body>
