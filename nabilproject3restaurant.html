@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Londrina+Shadow' rel='stylesheet' type='text/css'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sono:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Open Sans'; sans-serif;
+  margin: 0 auto;
+  max-width: 500px;
+  background: #ad5a39;
+}
+div {
+  height: 300px;
+  background-size: 100% 100%;
+  position: relative;
+  margin: 20px 0 90px 0;
+  border-radius: 12px;
+}
+h1 {
+  font-family: 'Montserrat', cursive;
+  text-align: center;
+  font-size: 75px;
+  color: #5c2814;
+  margin: 60px 0 0 0;
+}
+h2 {
+  font-family: 'Sono', sans-serif;
+  text-align: center;
+  color: #5c2814;
+  margin: 0px 0 70px 0;
+}
+p {
+  color: rgba(255,225,255,1);
+  background: black);
+  background: linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  background: -webkit-linear-gradient(bottom, rgba(179, 74, 73,1), rgba(235, 113, 14,.4));
+  background: -moz-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  padding: 10px;
+  line-height: 28px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 33px;
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+  font-family: 'Abril Fatface', cursive;
+  color: rgba(230, 198, 195);
+}
+
+small {
+  opacity: 0;
+  
+}
+input {
+	font-size: 22px;
+}
+.show-description p {
+  height: 150px;
+}
+
+.show-description small {
+  opacity: 1;
+}
+
+.first{
+  background-image: url("https://www.unclejerryskitchen.com/wp-content/uploads/2016/08/Curry-Rice-720x540.jpg");
+  font-family: 'Secular One', sans-serif;
+}
+.second{
+  background-image: url("https://vismaifood.com/storage/app/uploads/public/e12/7b7/127/thumb__700_0_0_0_auto.jpg");
+  font-family: 'Secular One', sans-serif;
+}
+.dessert{
+  background-image: url("https://www.kingarthurbaking.com/sites/default/files/styles/featured_image/public/2021-08/jalebi-2.jpg?itok=2BKgCMzZ");
+  font-family: 'Secular One', sans-serif;
+}
+.price {
+  float: right;
+}
+@media (max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+  }
+  div {
+    margin: 24px 12px 0 12px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  small {
+    font-size: 16px;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+<h1>Nabil's Diner</h1>
+<h2>a Bangladeshi eatery</h2>
+<div class="first" class="quantities">
+	<input class="quantities" type="number" min="0" style="width: 50px">
+  <p>Curry on Rice<span class="price">$8</span><br />
+  <small>Curry on Basmati Rice added with different options of Curry. A order of Curry on Basmati Rice can be also ordered with different types of curry and with or without flatbread </small></p>
+</div>
+
+<div class="second" class="quantities">
+	<input class="quantities" type="number" min="0" style="width: 50px">
+  <p>Biryani<span class="price">$10</span><br />
+  <small>Popular Basmati rice that is mixed with different types of indian spices that makes it tasty. It also can be served with either chicken or beef, with a side of salad and flatbread</small></p>
+</div>
+  
+<div class="dessert" class="quantities">
+	<input class="quantities" type="number" min="0" style="width: 50px">
+  <p>Jalebi<span class="price">$6</span><br />
+  <small>Crispy, juicy, and incredibly sweet, jalebi is considered the national sweet dish of India because of its huge fan base.</small></p>
+</div>
+
+  <input placeholder="name" id="Name">
+  <input type="email" placeholder="email" id="Email">
+  <input type="submit" id="submit">
+  
+<script>
+  $('div').on('click', function() {
+      $(this).toggleClass('show-description');
+  });
+</script>
+  
+  
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+	import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyB-K5ibhKFOiywTEkCoIQpwiDsDGxTTK7I",
+      authDomain: "nabil-dash-project-3.firebaseapp.com",
+      projectId: "nabil-dash-project-3",
+      storageBucket: "nabil-dash-project-3.appspot.com",
+      messagingSenderId: "672632942478",
+      appId: "1:672632942478:web:9377c72f9c31c11ef9fedf"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+	const db = getDatabase(app);
+	
+const Name = document.querySelector("#Name") 
+	const Email = document.querySelector("#Email")
+	document.querySelector('#submit').addEventListener('click', Submit)
+	const quantities = document.querySelectorAll(".quantities")
+	const prices = document.querySelectorAll(".price") 
+	const itemsList = ["Curry on Rice", "Biryani", "Jalebi"]
+	function Submit() {
+	  const timestamp = buildTimestamp()
+		let total = 0
+	  let cart = { }
+		
+	  for  (let i=0; i<quantities.length; i=i+1) {
+	  	if (quantities[i].value != "0" && quantities[i].value != "") {	
+			  let price = prices[i].innerHTML.replace('$', '')
+			  total = total + quantities[i].value * price 
+				
+	  		cart[itemsList[i]] = parseInt(quantities[i].value) 
+	  	}
+	  	quantities[i].value = ""
+	  }
+	  
+	  set(ref(db, timestamp), {
+		  Name: Name.value,
+	      email: Email.value,
+			cart: cart,
+		  totalPrice: total,
+		  paid: "not yet",
+			
+	  });
+
+	  Name.value = ""
+	  Email.value = ""
+	}
+	
+	function buildTimestamp() {
+		
+	  const now = new Date();
+	  let timestamp = now.getFullYear().toString() + "/";
+	  //const month = now.toLocaleString('default', { month: 'long' });
+
+	  let month = now.getMonth()+1   //add 1 because Javascript uses 0 for January
+	  month = month.toString()
+	  month = addLeadingZero(month)
+	  timestamp += month + "/"; 
+
+	  let date = now.getDate().toString()
+	  date = addLeadingZero(date)
+	  timestamp += date + "/";
+
+	  let hours = now.getHours().toString()
+	  hours = addLeadingZero(hours)
+	  timestamp += hours + ":";
+
+	  let minutes = now.getMinutes().toString()
+	  minutes = addLeadingZero(minutes)
+	  timestamp += minutes + ":";
+
+	  let seconds = now.getSeconds().toString()
+	  seconds = addLeadingZero(seconds)
+	  timestamp += seconds;
+  
+	  return timestamp
+	}
+	
+	function addLeadingZero(units) {
+		if (units.length < 2) {
+			units = "0" + units
+		}
+		return units
+	}
+  </script>
+
+</body>
